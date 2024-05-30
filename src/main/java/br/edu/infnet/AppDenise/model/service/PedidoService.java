@@ -21,4 +21,12 @@ public class PedidoService {
     public Collection<Pedido> obterLista(){
         return mapa.values();
     }
+
+    public Pedido obterPorId(Integer id) {
+        return mapa.get(id);
+    }
+
+    public void excluir(Integer id) {
+        mapa.remove(id);
+    }
 }

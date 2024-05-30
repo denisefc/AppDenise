@@ -6,12 +6,14 @@ import br.edu.infnet.AppDenise.model.service.MesaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
+import org.springframework.stereotype.Component;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.HashMap;
 import java.util.Map;
 
+@Component
 public class MesaLoader implements ApplicationRunner {
     @Autowired
     private MesaService mesaService;
@@ -35,10 +37,12 @@ public class MesaLoader implements ApplicationRunner {
             mesa.setDescricao(campos[0]);
             mesa.setPreco(Float.valueOf(campos[1]));
             mesa.setCodigo(Integer.valueOf(campos[2]));
-            mesa.setTipoMadeira(campos[3]);
-            mesa.setDisponivel(Boolean.valueOf(campos[4]));
+            mesa.setDisponivel(Boolean.valueOf(campos[3]));
+            mesa.setTipoMadeira(campos[4]);
             mesa.setVidro(Boolean.valueOf(campos[5]));
             mesa.setFormato(campos[6]);
+
+
 
             mesaService.incluir(mesa);
 

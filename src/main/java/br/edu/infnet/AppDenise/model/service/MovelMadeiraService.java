@@ -21,4 +21,12 @@ public class MovelMadeiraService {
     public Collection<MovelMadeira> obterLista(){
         return mapa.values();
     }
+
+    public MovelMadeira obterPorId(Integer id) {
+        return mapa.get(id);
+    }
+
+    public void excluir(Integer id) {
+        mapa.remove(id);
+    }
 }

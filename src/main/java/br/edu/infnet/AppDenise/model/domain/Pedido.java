@@ -2,6 +2,7 @@ package br.edu.infnet.AppDenise.model.domain;
 
 import lombok.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,11 +15,17 @@ public class Pedido {
 
     private List<MovelMadeira> moveisMadeira;
 
+    public Pedido() {
+        this.moveisMadeira = new ArrayList<MovelMadeira>();
+    }
+
+
     @Override
     public String toString() {
-        return String.format("%d - %.2f",
+        return String.format("%d - %.2f - %d",
                 numeroPedido,
-                totalReais
+                totalReais,
+                moveisMadeira.size()
         );
     }
 }

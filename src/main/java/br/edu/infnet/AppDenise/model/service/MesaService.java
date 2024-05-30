@@ -21,4 +21,12 @@ public class MesaService {
     public Collection<Mesa> obterLista(){
         return mapa.values();
     }
+
+    public Mesa obterPorId(Integer id) {
+        return mapa.get(id);
+    }
+
+    public void excluir(Integer id) {
+        mapa.remove(id);
+    }
 }

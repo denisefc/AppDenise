@@ -20,4 +20,12 @@ public class ArmarioService {
     public Collection<Armario> obterLista(){
         return mapa.values();
     }
+
+    public Armario obterPorId(Integer id) {
+        return mapa.get(id);
+    }
+
+    public void excluir(Integer id) {
+        mapa.remove(id);
+    }
 }

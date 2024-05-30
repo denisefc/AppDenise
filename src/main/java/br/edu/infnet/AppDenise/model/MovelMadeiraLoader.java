@@ -50,8 +50,8 @@ public class MovelMadeiraLoader implements ApplicationRunner {
                     mesa.setDescricao(campos[1]);
                     mesa.setPreco(Float.valueOf(campos[2]));
                     mesa.setCodigo(Integer.valueOf(campos[3]));
-                    mesa.setTipoMadeira(campos[4]);
-                    mesa.setDisponivel(Boolean.valueOf(campos[5]));
+                    mesa.setDisponivel(Boolean.valueOf(campos[4]));
+                    mesa.setTipoMadeira(campos[5]);
                     mesa.setVidro(Boolean.valueOf(campos[6]));
                     mesa.setFormato(campos[7]);
 

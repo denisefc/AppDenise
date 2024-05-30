@@ -12,7 +12,7 @@ public class Mesa extends MovelMadeira{
     public String toString() {
         return String.format("%s - %s - %s",
                 super.toString(),
-                vidro,
+                vidro ? "vidro=S" : "vidro=N",
                 formato
         );
     }
