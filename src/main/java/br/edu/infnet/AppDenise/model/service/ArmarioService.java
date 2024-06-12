@@ -1,31 +1,34 @@
 package br.edu.infnet.AppDenise.model.service;
 
 import br.edu.infnet.AppDenise.model.domain.Armario;
+import br.edu.infnet.AppDenise.model.repository.ArmarioRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
 
 @Service
 public class ArmarioService {
-    private static Map<Integer, Armario> mapa = new HashMap<>();
-    private static Integer id = 0;
+    @Autowired
+    private ArmarioRepository armarioRepository;
 
     public void incluir(Armario armario){
-        armario.setId(++id);
-        mapa.put(armario.getId(), armario);
+        armarioRepository.save(armario);
     }
 
     public Collection<Armario> obterLista(){
-        return mapa.values();
+        return (Collection<Armario>) armarioRepository.findAll();
     }
 
     public Armario obterPorId(Integer id) {
-        return mapa.get(id);
+        return armarioRepository.findById(id).orElse(null);
     }
 
     public void excluir(Integer id) {
-        mapa.remove(id);
+        armarioRepository.deleteById(id);
+    }
+
+    public long obterQtde() {
+        return armarioRepository.count();
     }
 }

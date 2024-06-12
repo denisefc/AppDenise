@@ -1,32 +1,34 @@
 package br.edu.infnet.AppDenise.model.service;
 
 import br.edu.infnet.AppDenise.model.domain.Mesa;
+import br.edu.infnet.AppDenise.model.repository.MesaRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
 
 @Service
 public class MesaService {
-    private static Map<Integer, Mesa> mapa = new HashMap<>();
-
-    private static Integer id = 0;
+    @Autowired
+    private MesaRepository mesaRepository;
 
     public void incluir(Mesa mesa){
-        mesa.setId(++id);
-        mapa.put(mesa.getId(), mesa);
+        mesaRepository.save(mesa);
     }
 
     public Collection<Mesa> obterLista(){
-        return mapa.values();
+        return (Collection<Mesa>) mesaRepository.findAll();
     }
 
     public Mesa obterPorId(Integer id) {
-        return mapa.get(id);
+        return mesaRepository.findById(id).orElse(null);
     }
 
     public void excluir(Integer id) {
-        mapa.remove(id);
+        mesaRepository.deleteById(id);
+    }
+
+    public long obterQtde() {
+        return mesaRepository.count();
     }
 }

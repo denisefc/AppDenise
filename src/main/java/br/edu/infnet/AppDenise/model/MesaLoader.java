@@ -2,10 +2,12 @@ package br.edu.infnet.AppDenise.model;
 
 import br.edu.infnet.AppDenise.model.domain.Armario;
 import br.edu.infnet.AppDenise.model.domain.Mesa;
+import br.edu.infnet.AppDenise.model.domain.Pedido;
 import br.edu.infnet.AppDenise.model.service.MesaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import java.io.BufferedReader;
@@ -13,6 +15,7 @@ import java.io.FileReader;
 import java.util.HashMap;
 import java.util.Map;
 
+@Order(3)
 @Component
 public class MesaLoader implements ApplicationRunner {
     @Autowired
@@ -42,7 +45,7 @@ public class MesaLoader implements ApplicationRunner {
             mesa.setVidro(Boolean.valueOf(campos[5]));
             mesa.setFormato(campos[6]);
 
-
+            mesa.setPedido(new Pedido(Integer.valueOf(campos[7])));
 
             mesaService.incluir(mesa);
 

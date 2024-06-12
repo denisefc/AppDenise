@@ -3,15 +3,18 @@ package br.edu.infnet.AppDenise.model;
 import br.edu.infnet.AppDenise.model.domain.Armario;
 import br.edu.infnet.AppDenise.model.domain.Mesa;
 import br.edu.infnet.AppDenise.model.domain.MovelMadeira;
+import br.edu.infnet.AppDenise.model.domain.Pedido;
 import br.edu.infnet.AppDenise.model.service.MovelMadeiraService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 
+@Order(4)
 @Component
 public class MovelMadeiraLoader implements ApplicationRunner {
     @Autowired
@@ -42,6 +45,8 @@ public class MovelMadeiraLoader implements ApplicationRunner {
                     armario.setPuxadores(Boolean.valueOf(campos[6]));
                     armario.setQuantidadeGavetas(Integer.valueOf(campos[7]));
 
+                    armario.setPedido(new Pedido(Integer.valueOf(campos[8])));
+
                     movelMadeiraService.incluir(armario);
                     break;
 
@@ -54,6 +59,8 @@ public class MovelMadeiraLoader implements ApplicationRunner {
                     mesa.setTipoMadeira(campos[5]);
                     mesa.setVidro(Boolean.valueOf(campos[6]));
                     mesa.setFormato(campos[7]);
+
+                    mesa.setPedido(new Pedido(Integer.valueOf(campos[8])));
 
                     movelMadeiraService.incluir(mesa);
                     break;

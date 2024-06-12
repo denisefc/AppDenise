@@ -1,15 +1,18 @@
 package br.edu.infnet.AppDenise.model;
 
 import br.edu.infnet.AppDenise.model.domain.Armario;
+import br.edu.infnet.AppDenise.model.domain.Pedido;
 import br.edu.infnet.AppDenise.model.service.ArmarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 
+@Order(2)
 @Component
 public class ArmarioLoader implements ApplicationRunner{
     @Autowired
@@ -38,6 +41,8 @@ public class ArmarioLoader implements ApplicationRunner{
             armario.setTipoMadeira(campos[4]);
             armario.setPuxadores(Boolean.valueOf(campos[5]));
             armario.setQuantidadeGavetas(Integer.valueOf(campos[6]));
+
+            armario.setPedido(new Pedido(Integer.valueOf(campos[7])));
 
             armarioService.incluir(armario);
 

@@ -1,32 +1,34 @@
 package br.edu.infnet.AppDenise.model.service;
 
 import br.edu.infnet.AppDenise.model.domain.MovelMadeira;
+import br.edu.infnet.AppDenise.model.repository.MovelMadeiraRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
 
 @Service
 public class MovelMadeiraService {
-    private static Map<Integer, MovelMadeira> mapa = new HashMap<>();
-
-    private static Integer id = 0;
+    @Autowired
+    private MovelMadeiraRepository movelMadeiraRepository;
 
     public void incluir(MovelMadeira movelMadeira){
-        movelMadeira.setId(++id);
-        mapa.put(movelMadeira.getId(), movelMadeira);
+        movelMadeiraRepository.save(movelMadeira);
     }
 
     public Collection<MovelMadeira> obterLista(){
-        return mapa.values();
+        return (Collection<MovelMadeira>) movelMadeiraRepository.findAll();
     }
 
     public MovelMadeira obterPorId(Integer id) {
-        return mapa.get(id);
+        return movelMadeiraRepository.findById(id).orElse(null);
     }
 
     public void excluir(Integer id) {
-        mapa.remove(id);
+        movelMadeiraRepository.deleteById(id);
+    }
+
+    public long obterQtde() {
+        return movelMadeiraRepository.count();
     }
 }

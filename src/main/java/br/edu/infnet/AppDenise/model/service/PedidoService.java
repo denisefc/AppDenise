@@ -1,32 +1,34 @@
 package br.edu.infnet.AppDenise.model.service;
 
 import br.edu.infnet.AppDenise.model.domain.Pedido;
+import br.edu.infnet.AppDenise.model.repository.PedidoRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
 
 @Service
 public class PedidoService {
-    private static Map<Integer, Pedido> mapa = new HashMap<>();
-
-    private static Integer id = 0;
+    @Autowired
+    private PedidoRepository pedidoRepository;
 
     public void incluir(Pedido pedido){
-        pedido.setId(++id);
-        mapa.put(pedido.getId(), pedido);
+        pedidoRepository.save(pedido);
     }
 
     public Collection<Pedido> obterLista(){
-        return mapa.values();
+        return (Collection<Pedido>) pedidoRepository.findAll();
     }
 
     public Pedido obterPorId(Integer id) {
-        return mapa.get(id);
+        return pedidoRepository.findById(id).orElse(null);
     }
 
     public void excluir(Integer id) {
-        mapa.remove(id);
+        pedidoRepository.deleteById(id);
+    }
+
+    public long obterQtde() {
+        return pedidoRepository.count();
     }
 }
