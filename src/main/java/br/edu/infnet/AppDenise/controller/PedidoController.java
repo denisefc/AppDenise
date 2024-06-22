@@ -18,7 +18,7 @@ public class PedidoController {
     }
 
     @GetMapping(value =  "/pedido/{numeroPedido}/numeroPedido")
-    public Pedido obterPorNumeroPedido(@PathVariable String numeroPedido) {
+    public Pedido obterPorNumeroPedido(@PathVariable int numeroPedido) {
         return pedidoService.obterPorNumeroPedido(numeroPedido);
     }
 

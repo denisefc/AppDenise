@@ -14,6 +14,7 @@ import lombok.*;
 public class Armario extends MovelMadeira{
     @Column(name = "flpuxadores")
     private boolean puxadores;
+
     @Min(value = 0, message = "A quantidade de gavetas precisa ser maior ou igual a {min}.")
     @Max(value = 10, message = "A quantidade de gavetas precisa ser menor ou igual a {max}.")
     @Column(name = "qtgavetas")

@@ -24,7 +24,7 @@ public class PedidoService {
         return (Collection<Pedido>) pedidoRepository.findAll();
     }
 
-    public Pedido obterPorNumeroPedido(String numeroPedido) {
+    public Pedido obterPorNumeroPedido(int numeroPedido) {
         return pedidoRepository.findByNumeroPedido(numeroPedido);
     }
 

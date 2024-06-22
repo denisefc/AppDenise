@@ -17,13 +17,15 @@ public class Pedido {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Min(value = 1, message = "o numero do pedido deve ser maior ou igual a {value}")
+
     @Column(unique = true, name = "csnumeroPedido")
     @Min(value = 1, message = "O numero do pedido precisa ser maior ou igual a {value}")
     private int numeroPedido;
+
     @Column(name = "vltotalReais")
     @Min(value = 1, message = "O valor total em reais do pedido precisa ser maior ou igual a {value}")
     private float totalReais;
+
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE, orphanRemoval = true)
     @JoinColumn(name = "idPedido")
     @JsonManagedReference
