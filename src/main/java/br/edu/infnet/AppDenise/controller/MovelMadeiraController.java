@@ -17,6 +17,16 @@ public class MovelMadeiraController {
         return movelMadeiraService.obterLista();
     }
 
+    @GetMapping(value = "/movelMadeira/{pedidoId}/lista")
+    public Collection<MovelMadeira> obterListaPorPedido(@PathVariable Integer pedidoId){
+        return movelMadeiraService.obterListaPorPedido(pedidoId);
+    }
+
+    @GetMapping(value =  "/movelMadeira/{codigo}/codigo")
+    public MovelMadeira obterPorCodigo(@PathVariable int codigo) {
+        return movelMadeiraService.obterPorCodigo(codigo);
+    }
+
     @GetMapping(value = "/movelMadeira/{id}")
     public MovelMadeira obterPorId(@PathVariable Integer id) {
         return movelMadeiraService.obterPorId(id);

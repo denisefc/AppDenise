@@ -16,6 +16,15 @@ public class ArmarioController {
     public Collection<Armario> obterLista(){
         return armarioService.obterLista();
     }
+    @GetMapping(value = "/armario/listacomordem")
+    public Collection<Armario> obterLista(@RequestParam String orderBy){
+        return armarioService.obterLista(orderBy);
+    }
+
+    @GetMapping(value = "/armario/lista/{puxadores}")
+    public Collection<Armario> obterListaComPuxadores(@PathVariable boolean puxadores){
+        return armarioService.obterListaComPuxadores(puxadores);
+    }
 
     @GetMapping(value = "/armario/{id}")
     public Armario obterPorId(@PathVariable Integer id) {

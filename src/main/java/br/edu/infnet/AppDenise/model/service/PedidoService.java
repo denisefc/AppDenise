@@ -13,11 +13,19 @@ public class PedidoService {
     private PedidoRepository pedidoRepository;
 
     public void incluir(Pedido pedido){
-        pedidoRepository.save(pedido);
+        try {
+            pedidoRepository.save(pedido);
+        } catch (Exception e) {
+            System.err.println("[ERROR] " + e.getMessage());
+        }
     }
 
     public Collection<Pedido> obterLista(){
         return (Collection<Pedido>) pedidoRepository.findAll();
+    }
+
+    public Pedido obterPorNumeroPedido(String numeroPedido) {
+        return pedidoRepository.findByNumeroPedido(numeroPedido);
     }
 
     public Pedido obterPorId(Integer id) {

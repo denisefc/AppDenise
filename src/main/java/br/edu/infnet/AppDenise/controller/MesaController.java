@@ -17,6 +17,15 @@ public class MesaController {
         return mesaService.obterLista();
     }
 
+    @GetMapping(value = "/mesa/listacomordem")
+    public Collection<Mesa> obterLista(@RequestParam String orderBy){
+        return mesaService.obterLista(orderBy);
+    }
+    @GetMapping(value = "/mesa/lista/{formato}")
+    public Collection<Mesa> obterListaPorFormato(@PathVariable String formato){
+        return mesaService.obterListaPorFormato(formato);
+    }
+
     @GetMapping(value =  "/mesa/{id}")
     public Mesa obterPorId(@PathVariable Integer id) {
         return mesaService.obterPorId(id);

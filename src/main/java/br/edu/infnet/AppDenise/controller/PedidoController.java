@@ -17,6 +17,11 @@ public class PedidoController {
         return pedidoService.obterLista();
     }
 
+    @GetMapping(value =  "/pedido/{numeroPedido}/numeroPedido")
+    public Pedido obterPorNumeroPedido(@PathVariable String numeroPedido) {
+        return pedidoService.obterPorNumeroPedido(numeroPedido);
+    }
+
     @GetMapping(value =  "/pedido/{id}")
     public Pedido obterPorId(@PathVariable Integer id) {
         return pedidoService.obterPorId(id);
